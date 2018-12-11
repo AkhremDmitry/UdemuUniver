@@ -2,12 +2,12 @@ package com.felix.navigator;
 
 import com.google.gwt.thirdparty.guava.common.base.Strings;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.ui.ComponentContainer;
+import com.vaadin.ui.SingleComponentContainer;
 import com.vaadin.ui.UI;
 
 public class UniversNavigator extends Navigator {
 
-  public UniversNavigator(UI ui, ComponentContainer container){
+  public UniversNavigator(UI ui, SingleComponentContainer container){
     super(ui, container);
   }
 

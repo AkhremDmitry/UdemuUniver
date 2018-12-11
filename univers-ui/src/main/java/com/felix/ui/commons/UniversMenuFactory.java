@@ -1,11 +1,13 @@
 package com.felix.ui.commons;
 
 import com.felix.utils.MyUtils;
+import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Tree;
 import com.vaadin.ui.VerticalLayout;
 
 @org.springframework.stereotype.Component
+@SpringView
 public class UniversMenuFactory implements UIComponentBuilder{
 
     private class UniversMenu extends VerticalLayout{
