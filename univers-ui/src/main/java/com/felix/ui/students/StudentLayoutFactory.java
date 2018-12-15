@@ -9,11 +9,15 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringView(name=StudentLayoutFactory.NAME, ui=UniversMainUI.class)
 public class StudentLayoutFactory extends VerticalLayout implements View {
 
     public static final String NAME = "addstudent";
+
+    @Autowired
+    private AddStudentMainLayoutFactory mainLayoutFactory;
 
     private TabSheet tabSheet;
 
