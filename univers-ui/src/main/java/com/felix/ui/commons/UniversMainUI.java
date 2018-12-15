@@ -1,6 +1,7 @@
 package com.felix.ui.commons;
 
 import com.felix.navigator.UniversNavigator;
+import com.felix.ui.students.StudentLayoutFactory;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.server.VaadinRequest;
@@ -79,5 +80,6 @@ public class UniversMainUI extends UI {
         UniversNavigator navigator = new UniversNavigator(this, changeTab);
         applicationContext.getAutowireCapableBeanFactory().autowireBean(navigator); //add navigator to context
         navigator.addProvider(viewProvider);
+        navigator.navigateTo(StudentLayoutFactory.NAME);
     }
 }

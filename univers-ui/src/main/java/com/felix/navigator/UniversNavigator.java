@@ -11,7 +11,7 @@ public class UniversNavigator extends Navigator {
     super(ui, container);
   }
 
-  public static UniversNavigator getNavigator(){
+  private static UniversNavigator getNavigator(){
     UI ui = UI.getCurrent();
     Navigator navigator = ui.getNavigator();
     return (UniversNavigator) navigator;
@@ -26,7 +26,7 @@ public class UniversNavigator extends Navigator {
   }
 
   @Override
-  public void navigateTo(String viewNAme) {
-    super.navigateTo(Strings.nullToEmpty(viewNAme));
+  public void navigateTo(String viewName) {
+    super.navigateTo(Strings.nullToEmpty(viewName));
   }
 }
