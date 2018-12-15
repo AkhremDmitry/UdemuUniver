@@ -4,8 +4,8 @@ public enum MyUtils {
 
   MENU_STUDENT("STUDENTS"),
   MENU_UNIVERSITY("UNIVERSITY"),
-  MENU_ADD_STUDENT("Add Srudent"),
-  MENU_REMOVE_STUDENT("Remove Srudent"),
+  MENU_ADD_STUDENT("Add Student"),
+  MENU_REMOVE_STUDENT("Remove Student"),
   MENU_OPERATIONS("Operations");
 
   private final String string;

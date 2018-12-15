@@ -10,7 +10,7 @@ import com.vaadin.ui.VerticalLayout;
 @SpringView(name=StudentLayoutFactory.NAME, ui=UniversMainUI.class)
 public class StudentLayoutFactory extends VerticalLayout implements View {
 
-    public static final String NAME = "addstudents";
+    public static final String NAME = "addstudent";
 
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
         addComponent(new Label("This is the student layout..."));
