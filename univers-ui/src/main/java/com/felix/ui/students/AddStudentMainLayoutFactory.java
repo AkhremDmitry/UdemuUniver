@@ -2,12 +2,14 @@ package com.felix.ui.students;
 
 import com.felix.model.entity.Student;
 import com.felix.utils.Gender;
+import com.felix.utils.NotificationMessages;
 import com.felix.utils.StudentsStringUtils;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
 
 @org.springframework.stereotype.Component
@@ -90,8 +92,12 @@ public class AddStudentMainLayoutFactory {
           try {
             fieldGroup.commit();
           } catch (CommitException e) {
-            e.printStackTrace();
+            Notification.show(NotificationMessages.STUDENT_SAVE_VALITATION_ERROR_TITLE.getString(),
+                NotificationMessages.STUDENT_SAVE_VALITATION_ERROR_DESCRIPTION.getString(),
+                Type.ERROR_MESSAGE);
+            return;
           }
+          clearField();
 
           System.out.println(student);
         }
