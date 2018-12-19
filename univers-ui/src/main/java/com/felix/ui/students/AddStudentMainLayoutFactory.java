@@ -1,6 +1,7 @@
 package com.felix.ui.students;
 
 import com.felix.model.entity.Student;
+import com.felix.service.student.AddStudentService;
 import com.felix.utils.Gender;
 import com.felix.utils.NotificationMessages;
 import com.felix.utils.StudentsStringUtils;
@@ -11,6 +12,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @org.springframework.stereotype.Component
 public class AddStudentMainLayoutFactory {
@@ -97,6 +99,8 @@ public class AddStudentMainLayoutFactory {
                 Type.ERROR_MESSAGE);
             return;
           }
+
+          addStudentService.saveStudent(student);
           clearField();
 
           System.out.println(student);
@@ -109,6 +113,9 @@ public class AddStudentMainLayoutFactory {
             gender.setValue(null);
         }
     }
+
+    @Autowired
+    private AddStudentService addStudentService;
 
     public Component createComponet() {
         return new AddStudentMainLayout().init().bind().layout();
