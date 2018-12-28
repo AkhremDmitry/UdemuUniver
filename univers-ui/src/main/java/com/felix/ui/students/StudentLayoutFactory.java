@@ -19,6 +19,9 @@ public class StudentLayoutFactory extends VerticalLayout implements View {
     @Autowired
     private AddStudentMainLayoutFactory mainLayoutFactory;
 
+    @Autowired
+    private ShowAllStudentsLayoutFactory showAllStudentsLayoutFactory;
+
     private TabSheet tabSheet;
 
     private void addLayout(){
@@ -27,7 +30,7 @@ public class StudentLayoutFactory extends VerticalLayout implements View {
         tabSheet.setWidth("100%");
 
         Component addStudentMainTab = mainLayoutFactory.createComponet();
-        Component showStudentsTab = new Label("Show students tab...");
+        Component showStudentsTab = showAllStudentsLayoutFactory.createComponent();
 
         tabSheet.addTab(addStudentMainTab, StudentsStringUtils.MAIN_MENU.getString());
         tabSheet.addTab(showStudentsTab, StudentsStringUtils.SHOW_ALL_STUDENTS.getString());
