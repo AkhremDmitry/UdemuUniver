@@ -30,6 +30,11 @@ public class AddStudentMainLayoutFactory {
         private BeanFieldGroup<Student> fieldGroup;
         private Student student;
 
+        private StudentSavedListener studentSavedListener;
+
+        public AddStudentMainLayout (StudentSavedListener studentSavedListener){
+            this.studentSavedListener = studentSavedListener;
+        }
 
         public AddStudentMainLayout init() {
 
@@ -101,6 +106,7 @@ public class AddStudentMainLayoutFactory {
           }
 
           addStudentService.saveStudent(student);
+          studentSavedListener.studentSaved();
           clearField();
             Notification.show(NotificationMessages.STUDENT_SAVE_SUCCESS_TITLE.getString(),
                     NotificationMessages.STUDENT_SAVE_SUCCESS_DESCRIPTION.getString(),
@@ -119,7 +125,7 @@ public class AddStudentMainLayoutFactory {
     @Autowired
     private AddStudentService addStudentService;
 
-    public Component createComponet() {
-        return new AddStudentMainLayout().init().bind().layout();
+    public Component createComponet(StudentSavedListener studentSavedListener) {
+        return new AddStudentMainLayout(studentSavedListener).init().bind().layout();
     }
 }
