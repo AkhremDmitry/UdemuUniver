@@ -10,7 +10,13 @@ public enum NotificationMessages {
 
   STUDENT_REMOVE_BUTTON("remove"),
   STUDENT_REMOVE_SUCCESS_TITLE("REMOVE"),
-  STUDENT_REMOVE_SUCCESS_DESCRIPTION("Student(s) successfully removed!")
+  STUDENT_REMOVE_SUCCESS_DESCRIPTION("Student(s) successfully removed!"),
+
+  UNIVERSITY_SAVED_VALIDATION_ERROR_TITLE("ERROR"),
+  UNIVERSITY_SAVED_VALIDATION_ERROR_DESCRIPTION("Field must be filled!"),
+
+  UNIVERSITY_SAVE_SUCCESS_TITLE("SAVE"),
+  UNIVERSITY_SAVE_SUCCESS_DESCRIPTION("University saved successfully")
 
   ;
 
