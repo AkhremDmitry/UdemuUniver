@@ -11,7 +11,7 @@ import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringView(name = UniversityLayoutFactory.NAME, ui=UniversMainUI.class)
-public class UniversityLayoutFactory extends VerticalLayout implements View {
+public class UniversityLayoutFactory extends VerticalLayout implements View, UniversitySavedListener {
 
     public static final String NAME = "operations";
 
@@ -20,14 +20,17 @@ public class UniversityLayoutFactory extends VerticalLayout implements View {
     @Autowired
     private AddUniversityLayoutFactory addUniversityLayoutFactory;
 
+    @Autowired
+    private ShowUniveritiesLayoutFactory showUniveritiesLayoutFactory;
+
     private void addLayout() {
         setMargin(true);
 
         tabSheet = new TabSheet();
         tabSheet.setWidth("100%");
 
-        Component addUniversityTab = addUniversityLayoutFactory.createComponent();
-        Component showAllUniversityTab = new Label("All universitys");
+        Component addUniversityTab = addUniversityLayoutFactory.createComponent(this);
+        Component showAllUniversityTab = showUniveritiesLayoutFactory.createComponent();
         Component showStatisticsTab = new Label("Stats");
 
         tabSheet.addTab(addUniversityTab, "ADD UNIVERSITY");
@@ -37,10 +40,15 @@ public class UniversityLayoutFactory extends VerticalLayout implements View {
         addComponent(tabSheet);
     }
 
+    public void universitySaved() {
+        showUniveritiesLayoutFactory.refreshTable();
+    }
+
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
 
         removeAllComponents();
         addLayout();
     }
+
 
 }
