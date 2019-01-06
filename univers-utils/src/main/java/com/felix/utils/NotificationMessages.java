@@ -16,7 +16,10 @@ public enum NotificationMessages {
   UNIVERSITY_SAVED_VALIDATION_ERROR_DESCRIPTION("Field must be filled!"),
 
   UNIVERSITY_SAVE_SUCCESS_TITLE("SAVE"),
-  UNIVERSITY_SAVE_SUCCESS_DESCRIPTION("University saved successfully")
+  UNIVERSITY_SAVE_SUCCESS_DESCRIPTION("University saved successfully"),
+
+  STUDENT_SAVE_INVALID_TITLE("ERROR"),
+  STUDENT_SAVE_INVALID_DESCRIPTION("Must have at least one university")
 
   ;
 

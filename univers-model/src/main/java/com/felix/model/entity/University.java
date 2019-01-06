@@ -50,4 +50,8 @@ public class University {
     public void setUniversityCity(String universityCity) {
         this.universityCity = universityCity;
     }
+
+    public String toString(){
+        return this.universityName;
+    }
 }

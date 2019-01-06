@@ -1,7 +1,9 @@
 package com.felix.ui.students;
 
 import com.felix.model.entity.Student;
+import com.felix.model.entity.University;
 import com.felix.service.student.AddStudentService;
+import com.felix.service.university.ShowAllUniversitiesService;
 import com.felix.utils.Gender;
 import com.felix.utils.NotificationMessages;
 import com.felix.utils.StudentsStringUtils;
@@ -14,6 +16,8 @@ import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @org.springframework.stereotype.Component
 public class AddStudentMainLayoutFactory {
 
@@ -24,6 +28,7 @@ public class AddStudentMainLayoutFactory {
         private TextField lastName;
         private TextField age;
         private ComboBox gender;
+        private ComboBox university;
         private Button saveButton;
         private Button clearButton;
 
@@ -49,6 +54,9 @@ public class AddStudentMainLayoutFactory {
             saveButton = new Button(StudentsStringUtils.SAVE_BUTTON.getString());
             clearButton = new Button(StudentsStringUtils.CLEAR_BUTTON.getString());
 
+            university = new ComboBox(StudentsStringUtils.UNIVERSITY.getString());
+            university.setWidth("100%");
+
             saveButton.setStyleName(ValoTheme.BUTTON_FRIENDLY);
             clearButton.setStyleName(ValoTheme.BUTTON_PRIMARY);
 
@@ -73,7 +81,7 @@ public class AddStudentMainLayoutFactory {
 
         public Component layout() {
             setMargin(true);
-            GridLayout gridLayout = new GridLayout(2,3);
+            GridLayout gridLayout = new GridLayout(2,4);
             gridLayout.setSizeUndefined();
             gridLayout.setSpacing(true);
 
@@ -82,7 +90,8 @@ public class AddStudentMainLayoutFactory {
 
             gridLayout.addComponent(age, 0,1);
             gridLayout.addComponent(gender, 1,1);
-            gridLayout.addComponent(new HorizontalLayout(saveButton, clearButton), 0,2);
+            gridLayout.addComponent(university, 0, 2, 1, 2);
+            gridLayout.addComponent(new HorizontalLayout(saveButton, clearButton), 0,3);
 
             return gridLayout;
         }
@@ -96,6 +105,13 @@ public class AddStudentMainLayoutFactory {
         }
 
         private void save(){
+
+            if (!isSaveOperationValid()) {
+                Notification.show(NotificationMessages.STUDENT_SAVE_INVALID_TITLE.getString(),
+                        NotificationMessages.STUDENT_SAVE_INVALID_DESCRIPTION.getString(),
+                        Type.ERROR_MESSAGE);
+                return;
+            }
           try {
             fieldGroup.commit();
           } catch (CommitException e) {
@@ -120,12 +136,26 @@ public class AddStudentMainLayoutFactory {
             age.setValue(null);
             gender.setValue(null);
         }
+
+        private boolean isSaveOperationValid(){
+            return showAllUniversitiesService.getAllUniversities().size() != 0;
+        }
+
+        public AddStudentMainLayout load(){
+
+            List<University> universities = showAllUniversitiesService.getAllUniversities();
+            university.addItems(universities);
+            return this;
+        }
     }
+
+    @Autowired
+    ShowAllUniversitiesService showAllUniversitiesService;
 
     @Autowired
     private AddStudentService addStudentService;
 
     public Component createComponet(StudentSavedListener studentSavedListener) {
-        return new AddStudentMainLayout(studentSavedListener).init().bind().layout();
+        return new AddStudentMainLayout(studentSavedListener).init().load().bind().layout();
     }
 }

@@ -9,7 +9,8 @@ public enum StudentsStringUtils {
     GENDER("Gender"),
     AGE("Age"),
     SAVE_BUTTON("Save"),
-    CLEAR_BUTTON("Clear");
+    CLEAR_BUTTON("Clear"),
+    UNIVERSITY("University");
 
     private final String string;
 
