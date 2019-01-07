@@ -32,6 +32,7 @@ public class ShowUniveritiesLayoutFactory implements UIComponentBuilder {
             universityTable.setColumnOrder("universityName", "universityCountry", "universityCity");
 //            we can't use that method because we don't have any getter and setter for University.id
 //            universityTable.removeColumn("id");
+            universityTable.removeColumn("id"); //now we have getter for id
             universityTable.setImmediate(true);
 
             return this;

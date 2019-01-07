@@ -135,6 +135,7 @@ public class AddStudentMainLayoutFactory {
             lastName.setValue(null);
             age.setValue(null);
             gender.setValue(null);
+            university.setValue(null);
         }
 
         private boolean isSaveOperationValid(){
