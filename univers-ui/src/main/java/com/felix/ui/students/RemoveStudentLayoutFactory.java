@@ -42,6 +42,7 @@ public class RemoveStudentLayoutFactory extends VerticalLayout implements View, 
         removeStudentTable = new Grid(container);
         removeStudentTable.setColumnOrder("firstName", "lastName", "age", "gender");
         removeStudentTable.removeColumn("id");
+        removeStudentTable.removeColumn("university");
         removeStudentTable.setImmediate(true);
         removeStudentTable.setSelectionMode(Grid.SelectionMode.MULTI);
 
