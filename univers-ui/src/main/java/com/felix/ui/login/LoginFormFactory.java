@@ -3,13 +3,17 @@ package com.felix.ui.login;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @org.springframework.stereotype.Component
 public class LoginFormFactory {
 
     @Autowired
-    private DaoAuthenticationProvider authenticationProvider;
+    private DaoAuthenticationProvider daoAuthenticationProvider;
 
     private class LoginForm{
 
@@ -55,6 +59,15 @@ public class LoginFormFactory {
             loginButton.addClickListener(new Button.ClickListener() {
                 public void buttonClick(Button.ClickEvent clickEvent) {
 
+                    try {
+
+                        Authentication auth = new UsernamePasswordAuthenticationToken(username.getValue(), passwordField.getValue());
+                        Authentication authenticated = daoAuthenticationProvider.authenticate(auth);
+                        SecurityContextHolder.getContext().setAuthentication(authenticated);
+
+                    } catch (AuthenticationException e) {
+                        Notification.show("Error", "Login fall! Try again", Notification.Type.ERROR_MESSAGE);
+                    }
                 }
             });
 
