@@ -17,6 +17,14 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Column(name = "password")
     private String password;
 

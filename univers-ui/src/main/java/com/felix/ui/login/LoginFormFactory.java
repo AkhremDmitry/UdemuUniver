@@ -1,5 +1,6 @@
 package com.felix.ui.login;
 
+import com.felix.ui.commons.UIComponentBuilder;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @org.springframework.stereotype.Component
-public class LoginFormFactory {
+public class LoginFormFactory implements UIComponentBuilder {
 
     @Autowired
     private DaoAuthenticationProvider daoAuthenticationProvider;
