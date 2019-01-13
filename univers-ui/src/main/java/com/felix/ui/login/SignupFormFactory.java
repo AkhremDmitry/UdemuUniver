@@ -41,7 +41,7 @@ public class SignupFormFactory implements UIComponentBuilder {
                 public void buttonClick(Button.ClickEvent clickEvent) {
 
                     if( !passwordField.getValue().equals(passwordAgainField.getValue())){
-                        new Notification("Error", "Passwords do not match", Notification.Type.ERROR_MESSAGE);
+                        Notification.show("Error", "Passwords do not match", Notification.Type.ERROR_MESSAGE);
                         return;
                     }
                     registerUserService.save(username.getValue(), passwordField.getValue());
@@ -53,6 +53,7 @@ public class SignupFormFactory implements UIComponentBuilder {
         }
 
         public Component layout(){
+
             root.addComponent(panel);
             root.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
 
@@ -64,6 +65,8 @@ public class SignupFormFactory implements UIComponentBuilder {
             signupLayout.addComponent(new HorizontalLayout(saveButton));
             signupLayout.setSizeUndefined();
             signupLayout.setMargin(true);
+
+            panel.setContent(signupLayout);
 
             return root;
         }

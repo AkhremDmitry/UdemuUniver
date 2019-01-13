@@ -39,7 +39,9 @@ public class LoginFormFactory implements UIComponentBuilder {
             signupButton.setStyleName(ValoTheme.BUTTON_PRIMARY);
 
             username = new TextField("Username");
+            username.setNullRepresentation("");
             passwordField = new PasswordField("Password");
+            passwordField.setNullRepresentation("");
 
             return this;
         }
@@ -66,15 +68,21 @@ public class LoginFormFactory implements UIComponentBuilder {
                         Authentication authenticated = daoAuthenticationProvider.authenticate(auth);
                         SecurityContextHolder.getContext().setAuthentication(authenticated);
 
+                        UI.getCurrent().getPage().setLocation("/ui");
+
                     } catch (AuthenticationException e) {
                         Notification.show("Error", "Login fall! Try again", Notification.Type.ERROR_MESSAGE);
+                    } finally {
+                        username.clear();
+                        passwordField.clear();
                     }
+
                 }
             });
 
             signupButton.addClickListener(new Button.ClickListener() {
                 public void buttonClick(Button.ClickEvent clickEvent) {
-
+                    UI.getCurrent().getPage().setLocation("/signup");
                 }
             });
 
